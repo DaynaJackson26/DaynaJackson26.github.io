@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dayna Jackson - Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+:root {
+  --pink:       #f5c6d0;
+  --pink-dark:  #e8a0b0;
+  --blush:      #fdeef1;
+  --cream:      #fdf8f5;
+  --sand:       #f0e8e0;
+  --taupe:      #c4a89a;
+  --brown:      #7a5c52;
+  --text:       #3d2e2a;
+  --muted:      #9c8580;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+a { color: var(--brown); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Top Nav ── */
+nav#topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 68px;
+  background: rgba(253, 248, 245, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--sand);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  z-index: 100;
+}
+
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--brown);
+  text-decoration: none;
+}
+
+#hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+#hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+#mobile-menu {
+  display: none;
+  position: fixed;
+  top: 68px; left: 0; right: 0;
+  background: var(--cream);
+  border-bottom: 1px solid var(--sand);
+  padding: 16px 24px 20px;
+  z-index: 99;
+  flex-direction: column;
+  gap: 14px;
+}
+#mobile-menu a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+#mobile-menu.open { display: flex; }
+
+/* ── Page layout ── */
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px 120px;
+}
+
+section {
+  padding: 100px 0 70px;
+  border-bottom: 1px solid var(--sand);
+}
+section:last-child { border-bottom: none; }
+
+.section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.2rem;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+.section-sub {
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 44px;
+  font-family: 'Crimson Pro', serif;
+}
+
+/* ── Hero ── */
+#home {
+  padding-top: 140px;
+  padding-bottom: 80px;
+}
+
+.hero-layout {
+  display: flex;
+  align-items: center;
+  gap: 52px;
+}
+
+/* Headshot */
+.hero-photo {
+  flex-shrink: 0;
+  width: 180px;
+  height: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 4px solid var(--pink);
+  box-shadow: 0 8px 32px rgba(122, 92, 82, 0.15);
+  background: var(--sand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--taupe);
+  text-align: center;
+  padding: 12px;
+  font-style: italic;
+  line-height: 1.5;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+
+/* Hero text */
+.hero-text { flex: 1; min-width: 0; }
+
+.hero-tag {
+  display: inline-block;
+  background: var(--pink);
+  color: var(--brown);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 14px;
+}
+
+.hero-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--text);
+  line-height: 1.05;
+  margin-bottom: 14px;
+}
+
+.hero-bio {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+
+.hero-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: var(--blush);
+  border: 1px solid var(--pink);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--brown);
+  transition: background 0.2s, border-color 0.2s;
+}
+.contact-pill:hover {
+  background: var(--pink);
+  border-color: var(--pink-dark);
+  text-decoration: none;
+}
+
+/* ── Education ── */
+.edu-layout { display: flex; gap: 48px; }
+.course-col { flex: 0 0 180px; }
+.course-col h4 {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--taupe);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.course-list {
+  list-style: none;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 2.1;
+}
+.course-list li::before { content: '✦ '; color: var(--pink-dark); font-size: 0.6rem; }
+
+.degree-col { flex: 1; }
+.degree-card {
+  background: #fff;
+  border: 1px solid var(--sand);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.degree-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.15rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.degree-school { font-size: 0.85rem; color: var(--brown); font-weight: 600; margin-bottom: 2px; }
+.degree-dates { font-size: 0.78rem; color: var(--taupe); font-style: italic; margin-bottom: 16px; }
+.degree-card ul { padding-left: 18px; font-size: 0.85rem; color: var(--muted); line-height: 2; }
+
+/* ── Timeline (Experience) ── */
+.timeline { position: relative; padding-left: 24px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px; bottom: 8px;
+  width: 2px;
+  background: var(--pink);
+  border-radius: 2px;
+}
+.t-item {
+  position: relative;
+  margin-bottom: 44px;
+  padding-bottom: 44px;
+  border-bottom: 1px solid var(--sand);
+}
+.t-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.t-item::before {
+  content: '';
+  position: absolute;
+  left: -29px; top: 6px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--pink-dark);
+  border: 2px solid var(--cream);
+}
+.t-item h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.t-company { font-size: 0.83rem; color: var(--brown); font-weight: 600; margin-bottom: 2px; }
+.t-dates { font-size: 0.77rem; color: var(--taupe); font-style: italic; margin-bottom: 14px; }
+.t-item ul { padding-left: 18px; font-size: 0.87rem; color: var(--muted); line-height: 2; }
+
+/* ── Projects ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+.project-card {
+  background: #fff;
+  border: 1px solid var(--sand);
+  border-radius: 16px;
+  padding: 28px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.project-card:hover {
+  box-shadow: 0 8px 32px rgba(122, 92, 82, 0.1);
+  transform: translateY(-3px);
+}
+.project-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.05rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.project-card h3 a { color: var(--text); }
+.project-card h3 a:hover { color: var(--brown); text-decoration: none; }
+.project-type { font-size: 0.77rem; color: var(--taupe); font-style: italic; margin-bottom: 12px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.tag {
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  background: var(--blush);
+  color: var(--brown);
+  border-radius: 100px;
+  font-weight: 600;
+  border: 1px solid var(--pink);
+}
+.project-card ul { padding-left: 16px; font-size: 0.84rem; color: var(--muted); line-height: 1.9; }
+
+/* ── Skills ── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+.skill-card {
+  background: #fff;
+  border: 1px solid var(--sand);
+  border-radius: 14px;
+  padding: 24px;
+  transition: box-shadow 0.2s;
+}
+.skill-card:hover { box-shadow: 0 4px 20px rgba(122,92,82,0.08); }
+.skill-pip {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--pink);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+.skill-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.skill-card p { font-size: 0.81rem; color: var(--muted); line-height: 1.75; }
+
+/* ── Certifications ── */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+.cert-card {
+  background: #fff;
+  border: 1px solid var(--sand);
+  border-radius: 16px;
+  padding: 24px 28px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.cert-card:hover {
+  box-shadow: 0 6px 24px rgba(122,92,82,0.1);
+  transform: translateY(-2px);
+}
+.cert-badge {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+.cert-info h4 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 0.98rem;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.cert-issuer { font-size: 0.78rem; color: var(--brown); font-weight: 600; margin-bottom: 2px; }
+.cert-date { font-size: 0.74rem; color: var(--taupe); font-style: italic; margin-bottom: 8px; }
+.cert-link { font-size: 0.75rem; font-weight: 600; color: var(--brown); letter-spacing: 0.04em; }
+.cert-link:hover { text-decoration: underline; }
+
+/* ── Resume button ── */
+.resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  padding: 13px 30px;
+  background: var(--brown);
+  color: #fff;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: background 0.2s;
+}
+.resume-btn:hover { background: var(--text); text-decoration: none; }
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  nav#topnav { padding: 0 24px; }
+  .nav-links { display: none; }
+  #hamburger { display: flex; }
+  main { padding: 0 20px 80px; }
+  #home { padding-top: 110px; }
+  .hero-layout { flex-direction: column-reverse; align-items: flex-start; gap: 28px; }
+  .hero-photo { width: 130px; height: 130px; }
+  .edu-layout { flex-direction: column; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .cert-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ TOP NAV ══════════ -->
+<nav id="topnav">
+  <div class="nav-logo">Dayna Jackson</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+  </ul>
+  <button id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="mobile-menu">
+  <a href="#home"           onclick="closeMobile()">Home</a>
+  <a href="#education"      onclick="closeMobile()">Education</a>
+  <a href="#experience"     onclick="closeMobile()">Experience</a>
+  <a href="#projects"       onclick="closeMobile()">Projects</a>
+  <a href="#skills"         onclick="closeMobile()">Skills</a>
+  <a href="#certifications" onclick="closeMobile()">Certifications</a>
+</div>
+
+<main>
+
+  <!-- ══════════ HOME ══════════ -->
+  <section id="home">
+    <div class="hero-layout">
+
+      <!-- HEADSHOT — to add your photo:
+           1. Create an assets/ folder next to index.html
+           2. Put your photo in it (e.g. headshot.jpg)
+           3. Replace everything inside this div with:
+              <img src="assets/headshot.jpg" alt="Dayna Jackson">  -->
+      <div class="hero-photo">
+          <img src="/Users/daynaj/Desktop/assets:/DayHeadshot.JPEG" alt="Dayna Jackson">
+      </div>
+
+      <div class="hero-text">
+        <div class="hero-tag">✦ Open to Opportunities</div>
+        <h1 class="hero-name">Dayna Jackson.</h1>
+        <p class="hero-bio">
+          Hello, I am currently an IT Service Management intern with a strong foundation in C++, Python, SQL and full stack development.
+          I love building software that bridges the gap between complex systems and the people who use them. Experienced in secure software practices through
+          a capstone project on password security and breach detection, and in evaluating DevSecOps tools for risk assessment. Proven problem solver and
+          adaptable team player, balancing coursework and athletic commitments. Seeking to apply security and development expertise to protect and enhance
+          enterprise applications. Always looking for new problems to solve. Let's connect!
+        </p>
+        <div class="hero-contacts">
+          <a class="contact-pill" href="mailto:daynasjackson@icloud.com">✉ cyber.jackson26@gmail.com</a>
+          <a class="contact-pill" href="https://github.com/DaynaJackson26" target="_blank">⌥ GitHub</a>
+          <a class="contact-pill" href="https://linkedin.com/in/daynajenjackson" target="_blank">in LinkedIn</a>
+          <a class="contact-pill" href="/Users/daynaj/Desktop/assets:/DaynaJenJackson Resume 2.pdf" download>↓ Resume</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ EDUCATION ══════════ -->
+  <section id="education">
+    <div class="section-label">Background</div>
+    <h2>Education</h2>
+    <p class="section-sub">Where I've studied.</p>
+    <div class="edu-layout">
+
+      <div class="course-col">
+        <h4>Courses</h4>
+        <ul class="course-list">
+          <li>Data Structures</li>
+          <li>Network Security</li>
+          <li>Computer Security</li>
+          <li>Machine Learning</li>
+          <li>Database Management</li>
+          <li>Website Development</li>
+          <li>Systems Analysis &amp; Design</li>
+          <li>Discrete Math</li>
+        </ul>
+      </div>
+
+      <div class="degree-col">
+        <div class="degree-card">
+          <h3>Bachelor of Science in Computer Science</h3>
+          <div class="degree-school">Tuskegee University</div>
+          <div class="degree-dates">August 2022 – May 2026 (Expected)</div>
+          <ul>
+            <li>GPA: 3.55 / 4.0</li>
+            <li>Concentration in Information Systems</li>
+            <li>Dean's List</li>
+            <li>Student Athlete</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ EXPERIENCE ══════════ -->
+  <section id="experience">
+    <div class="section-label">Career</div>
+    <h2>Work Experience</h2>
+    <p class="section-sub">My most recent roles.</p>
+    <div class="timeline">
+
+      <div class="t-item">
+        <h3>IT Service Management Intern</h3>
+        <div class="t-company">The Christ Hospital</div>
+        <div class="t-dates">February 2026 – Current</div>
+        <ul>
+          <li>Delivered frontline IT support for end‑user devices across the organization using phone, email, in‑person, and remote troubleshooting methods</li>
+          <li>Diagnosed and resolved hardware, software, and network issues while delivering excellent customer service to users with varying technical skill levels</li>
+          <li>Configured, installed, and imaged workstations, peripherals, and software using tools such as Active Directory, SCCM, and Microsoft Office 365</li>
+          <li>Supported mobile devices, conference room audio/video systems, and documented issues using ServiceNow ticketing system</li>
+        </ul>
+      </div>
+
+      <div class="t-item">
+        <h3>Academic Coach</h3>
+        <div class="t-company">Tuskegee University Work Study</div>
+        <div class="t-dates">Aug 2023 – May 2024</div>
+        <ul>
+          <li>Monitored 10+ students by creating personalized academic plans that improved student GPAs and got them on track to graduate</li>
+          <li>Streamlined learning sessions using project planning techniques, resulting in higher grades and getting academic scholarships</li>
+          <li>Strengthened communication and leadership by establishing regular feedback meetings and collaborative projects, which increased student engagement and satisfaction</li>
+        </ul>
+      </div>
+
+      <!-- Copy a .t-item block to add more roles -->
+
+    </div>
+  </section>
+
+  <!-- ══════════ PROJECTS ══════════ -->
+  <section id="projects">
+    <div class="section-label">Work</div>
+    <h2>Projects</h2>
+    <p class="section-sub">See <a href="https://github.com/yourusername" target="_blank">GitHub</a> for source code.</p>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <h3><a href="https://github.com/yourusername/project1" target="_blank">Password Vault with Strength Analyzer and Breach Detection</a></h3>
+        <div class="project-type">Capstone Project</div>
+        <div class="tags">
+          <span class="tag">Python</span>
+        </div>
+        <ul>
+          <li>Developed a secure password vault application using Python, focusing on encryption and user authentication</li>
+          <li>Built a password strength analyzer to enforce security best practices and improve user awareness</li>
+          <li>Integrated breach detection via external APIs to identify compromised credentials in real time</li>
+          <li>Applied cybersecurity principles and usability testing to ensure data protection and user trust</li>
+        </ul>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://github.com/yourusername/project2" target="_blank">Database Management</a></h3>
+        <div class="project-type">Database Project</div>
+        <div class="tags">
+          <span class="tag">SQL</span>
+        </div>
+        <ul>
+          <li>Created and debugged five relational tables using SQL scripts in Oracle</li>
+          <li>Researched and resolved errors to strengthen SQL and troubleshooting skills</li>
+          <li>Analyzed table structure and its impact on data storage and queries</li>
+        </ul>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://github.com/yourusername/project3" target="_blank">Website Development</a></h3>
+        <div class="project-type">Web Development Project</div>
+        <div class="tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+        <ul>
+          <li>Developed a dynamic website using HTML, CSS, JavaScript, focusing on interactivity and client-side behavior</li>
+          <li>Wrote JavaScript to handle user events, update page content, and enhance user experience</li>
+          <li>Debugged and tested scripts to ensure functionality across browsers</li>
+        </ul>
+      </div>
+
+      <!-- Copy a .project-card to add more -->
+
+    </div>
+  </section>
+
+  <!-- ══════════ SKILLS ══════════ -->
+  <section id="skills">
+    <div class="section-label">Toolkit</div>
+    <h2>Skills</h2>
+    <p class="section-sub">What I work with.</p>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-pip">💻</div>
+        <h4>Languages</h4>
+        <p>Python, Java, JavaScript, C++, HTML, CSS, R</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-pip">🛠</div>
+        <h4>Frameworks &amp; Tools</h4>
+        <p>React, Node.js, Git, Docker, AWS, PostgreSQL</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-pip">🧠</div>
+        <h4>Concepts</h4>
+        <p>Data structures, algorithms, systems design, machine learning, SDLC</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-pip">🤝</div>
+        <h4>Soft Skills</h4>
+        <p>Team collaboration, agile workflows, technical writing, communication, leadership</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ CERTIFICATIONS ══════════ -->
+  <section id="certifications">
+    <div class="section-label">Credentials</div>
+    <h2>Certifications</h2>
+    <p class="section-sub">Courses and credentials I've earned.</p>
+    <div class="cert-grid">
+
+      <div class="cert-card">
+        <div class="cert-badge">🏅</div>
+        <div class="cert-info">
+          <h4>Intro to HTML</h4>           <!-- EDIT e.g. AWS Cloud Practitioner -->
+          <div class="cert-issuer">[GoSkills]</div> <!-- EDIT e.g. Amazon Web Services -->
+          <div class="cert-date">Issued [December 2023]</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-badge">🎓</div>
+        <div class="cert-info">
+          <h4>Cybersecurity</h4>
+          <div class="cert-issuer">[Google]</div>
+          <div class="cert-date">Issued [July 2025]</div>
+        </div>
+      </div>
+
+      <!-- Copy a .cert-card block to add more certifications -->
+
+    </div>
+
+    <a href="/Users/daynaj/Desktop/assets:/DaynaJenJackson Resume 2.pdf" download="DaynaJenJackson Resume 2.pdf" class="resume-btn">↓ Download Resume</a>
+  </section>
+
+</main>
+
+<script>
+  function toggleMobile() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function closeMobile() {
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks  = document.querySelectorAll('#topnav .nav-links a');
+
+  function onScroll() {
+    var current = '';
+    sections.forEach(function(sec) {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navLinks.forEach(function(link) {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>
